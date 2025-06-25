@@ -363,8 +363,6 @@ def main():
     train_dataset_fluo = Fluo_N3DH_SIM(root_dir=fluo_root, split="train")
     val_dataset_fluo = Fluo_N3DH_SIM(root_dir=fluo_root, split="val")
 
-
-
     train_dataloader   = torch.utils.data.DataLoader(
         train_dataset_fluo,
         shuffle=True,

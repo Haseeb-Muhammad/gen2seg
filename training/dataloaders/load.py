@@ -589,8 +589,8 @@ class Fluo_N3DH_SIM(Dataset):
             gt_transformed = torch.from_numpy(np.array(gt))*2.0-1.0
 
         return {
-            "rgb": rgb_tensor,
-            "instance": instance_tensor,
+            "rgb": image_transformed,
+            "instance": gt_transformed,
             "no_bg": True
         }
 
