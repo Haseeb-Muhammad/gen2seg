@@ -560,3 +560,39 @@ class VirtualKITTI2(Dataset):
             "instance": instance_tensor,
             "no_bg": True
         }
+
+class Fluo_N3DH_SIM(Dataset):
+    def __init__(self, root_dir, split, res, transform=None):
+        self.root_dir = root_dir
+        self.res = res
+        self.image_paths, self.gt_paths = self.loadPaths()
+    
+    def _loadPaths(self):
+        gt_paths = sorted(glob.glob(os.path.join(self.root_dir, "gt", self.split)))
+        image_paths = sorted(glob.glob(os.path.join(self.root_dir, "image", self.split)))
+        return image_paths, gt_paths
+    
+    def __len__(self):
+        return len(self.image_paths)
+    
+    def __getitem__(self, idx):
+        img_path = image_paths[idx]
+        gt_path = gt_paths[idx]
+
+        image = Image.open(img_path).convert("RGB")
+        gt = Image.open(gt_path).convert("RGB")
+
+        if self.transform is not None:
+            image_transformed, gt_transformed = self.transform(image, gt, self.res)
+        else:
+            image_transformed = transforms.ToTensor()(image)*2.0 - 1.0
+            gt_transformed = torch.from_numpy(np.array(gt))*2.0-1.0
+
+        return {
+            "rgb": rgb_tensor,
+            "instance": instance_tensor,
+            "no_bg": True
+        }
+
+
+        
