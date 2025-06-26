@@ -149,7 +149,7 @@ def parse_args():
     parser.add_argument(
         "--report_to",
         type=str,
-        default="tensorboard",
+        default="wandb",
         choices=["tensorboard", "wandb"],
     )
     parser.add_argument(
@@ -184,7 +184,7 @@ def parse_args():
     parser.add_argument(
         "--tracker_project_name",
         type=str,
-        default="e2e-ft-diffusion",
+        default="e2e-ft-diffusion_fluo_dataset",
         help="The `project_name` arg passed to Accelerator.init_trackers.",
     )
     parser.add_argument(
