@@ -1,1 +1,1 @@
-pip install -r requirements.txt
+pip install -r /netscratch/muhammad/codes/gen2seg/requirements.txt
